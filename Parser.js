@@ -1,3 +1,4 @@
+// Copyright 2011-2012, Mike Shema <mike@deadliestwebattacks.com>
 
 function capabilityChecks() {
   return 'undefined' !== typeof(ArrayBuffer);
