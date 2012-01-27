@@ -2,13 +2,10 @@
 <html>
 <head>
   <meta charset='utf-8'>
-
   <title>mutantzombie/JavaScript-ViewState-Parser @ GitHub</title>
-
   <style type="text/css">
     body {
       margin-top: 1.0em;
-      background-color: #dd13cd;
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #000000;
     }
@@ -28,13 +25,17 @@
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
   </style>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/treeview/assets/skins/sam/treeview.css" />
+  <script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+  <script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/treeview/treeview-min.js"></script>
+  <script src="https://raw.github.com/mutantzombie/JavaScript-ViewState-Parser/master/Editor.js"></script>
+  <script src="https://raw.github.com/mutantzombie/JavaScript-ViewState-Parser/master/Parser.js"></script>
+  <script src="https://raw.github.com/mutantzombie/JavaScript-ViewState-Parser/master/viewstate.js"></script>
 </head>
-
 <body>
   <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
   <div id="container">
-
     <div class="download">
       <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser/zipball/master">
         <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
@@ -43,30 +44,13 @@
     </div>
 
     <h1><a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser">JavaScript-ViewState-Parser</a>
-      <span class="small">by <a href="https://github.com/mutantzombie">mutantzombie</a></span></h1>
+      </h1>
 
     <div class="description">
       Parse unencrypted .NET ViewState objects with JavaScript
     </div>
-
-    
-
-    
-
-    
-
-    
-
-    
       <h2>Authors</h2>
       <p>Mike (mike@deadliestwebattacks.com)<br/>      </p>
-    
-
-    
-      <h2>Contact</h2>
-      <p> (mike@deadliestwebattacks.com)<br/>      </p>
-    
-
     <h2>Download</h2>
     <p>
       You can download this project in either
@@ -83,6 +67,16 @@
     </div>
 
   </div>
+<hr>
+Enter a base64-encoded, unencrypted ViewState in the textbox. (Requires browser Typed Array support.)
+<form action="javascript:void(0)" onSubmit="deserialize(this.vs.value); return false;">
+<textarea name="vs" cols="120" rows="8"></textarea><br>
+<input type="submit">&nbsp;<input type="reset" onclick="c()">
+</form>
+<div id="results"></div>
+<div id="expandcontractdiv">
+<a id="expand" href="#">Expand all</a>&nbsp;<a id="collapse" href="#">Collapse all</a></div>
+<div id="resultTree"></div>
 
 </body>
 </html>
