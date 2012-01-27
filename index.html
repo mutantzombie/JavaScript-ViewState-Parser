@@ -19,9 +19,9 @@
     h2 { font-size: 1.5em; color: #22ec32; }
     h3 { text-align: center; color: #22ec32; }
     a { color: #22ec32; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .description { font-size: 1.2em; margin-bottom: 10px; margin-top: 10px; font-style: italic;}
     .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
+    pre { background: #000; color: #fff; padding: 6px;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
   </style>
@@ -34,41 +34,26 @@
   <script src="https://raw.github.com/mutantzombie/JavaScript-ViewState-Parser/master/viewstate.js"></script>
 </head>
 <body>
-  <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
   <div id="container">
-    <div class="download">
-      <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser">JavaScript-ViewState-Parser</a>
-      </h1>
-
+    <h1><a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser">JavaScript-ViewState-Parser</a> </h1>
     <div class="description">
       Parse unencrypted .NET ViewState objects with JavaScript
     </div>
       <h2>Authors</h2>
-      <p>Mike (mike@deadliestwebattacks.com)<br/>      </p>
+      <p>Mike (mike@deadliestwebattacks.com)<br/></p>
     <h2>Download</h2>
-    <p>
-      You can download this project in either
+    <p>You can download this project in either
       <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser/zipball/master">zip</a> or
-      <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser/tarball/master">tar formats.
+      <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser/tarball/master">tar formats.</a>
     </p>
     <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
       by running:
       <pre>$ git clone git://github.com/mutantzombie/JavaScript-ViewState-Parser</pre>
     </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/mutantzombie/JavaScript-ViewState-Parser">mutantzombie/JavaScript-ViewState-Parser</a>
-    </div>
-
   </div>
-<hr>
-Enter a base64-encoded, unencrypted ViewState in the textbox. (Requires browser Typed Array support.)
+<hr><br>
+Enter a base64-encoded, unencrypted ViewState in the textbox. (Requires browser Typed Array support.)<br>
+<br>
 <form action="javascript:void(0)" onSubmit="deserialize(this.vs.value); return false;">
 <textarea name="vs" cols="120" rows="8"></textarea><br>
 <input type="submit">&nbsp;<input type="reset" onclick="c()">
@@ -77,6 +62,7 @@ Enter a base64-encoded, unencrypted ViewState in the textbox. (Requires browser 
 <div id="expandcontractdiv">
 <a id="expand" href="#">Expand all</a>&nbsp;<a id="collapse" href="#">Collapse all</a></div>
 <div id="resultTree"></div>
-
+    <div class="footer">
+    </div>
 </body>
 </html>
