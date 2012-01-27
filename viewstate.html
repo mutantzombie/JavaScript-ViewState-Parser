@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/treeview/assets/skins/sam/treeview.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/treeview/treeview-min.js"></script>
+<script src="Editor.js"></script>
+<script src="Parser.js"></script>
+<script src="viewstate.js"></script>
+</head>
+<body>
+<form action="javascript:void(0)" onSubmit="deserialize(this.vs.value); return false;">
+<textarea name="vs" cols="80" rows="7"></textarea>
+<br><input type="submit"><input type="reset" onclick="c()">
+</form>
+<pre>
+<div id="results"></div>
+<div id="expandcontractdiv"><a id="expand" href="#">Expand all</a>&nbsp;<a id="collapse" href="#">Collapse all</a></div>
+<div id="resultTree"></div>
+</pre>
+<script>
+test2()
+</script>
+</body>
+</html>
