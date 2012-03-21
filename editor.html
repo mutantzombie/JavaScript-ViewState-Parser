@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<!-- Copyright 2011-2012, Mike Shema <mike@deadliestwebattacks.com> -->
+<script src="http://yui.yahooapis.com/3.4.1/build/yui/yui-min.js"></script>
+<script src="https://raw.github.com/bitwiseshiftleft/sjcl/master/sjcl.js"></script>
+<script src="Editor.js"></script>
+<script src="Parser.js"></script>
+<script src="viewstate.js"></script>
+</head>
+<body>
+<form action="javascript:void(0)" onSubmit="deserialize(this.vs.value); return false;">
+<textarea name="vs" cols="80" rows="7"></textarea>
+<br><input type="submit"><input type="reset" onclick="c()">
+</form>
+<pre>
+<div id="results"></div>
+<div id="expandcontractdiv"><a id="expand" href="#">Expand all</a>&nbsp;<a id="collapse" href="#">Collapse all</a></div>
+<div id="resultTree"></div>
+</pre>
+<script>
+test2()
+</script>
+</body>
+</html>
