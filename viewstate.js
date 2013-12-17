@@ -1,4 +1,4 @@
-// Copyright 2011-2012, Mike Shema <mike@deadliestwebattacks.com>
+// Copyright 2011-2013, Mike Shema <mike@deadliestwebattacks.com>
 
 function c() {
   document.getElementById("results").innerHTML = "";
