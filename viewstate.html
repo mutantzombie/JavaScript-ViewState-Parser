@@ -2,27 +2,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- Copyright 2011-2013, Mike Shema <mike@deadliestwebattacks.com> -->
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/treeview/assets/skins/sam/treeview.css" />
-<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/treeview/treeview-min.js"></script>
-<script src="Editor.js"></script>
+<!--
+  Copyright 2011-2013, Mike Shema <mike@deadliestwebattacks.com>
+  Source code at https://github.com/mutantzombie/JavaScript-ViewState-Parser
+-->
+<script src="http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js"></script>
+<!-- <script src="Editor.js"></script> -->
 <script src="Parser.js"></script>
 <script src="viewstate.js"></script>
 </head>
 <body>
-<form action="javascript:void(0)" onSubmit="deserialize(this.vs.value); return false;">
-<textarea name="vs" cols="80" rows="7"></textarea>
-<br><input type="submit"><input type="reset" onclick="c()">
+<form action="javascript:void(0)" onSubmit="return false;">
+<textarea id="vs" name="vs" cols="80" rows="7">/wEPDwUENTM4MWRkhsjF+62gWnhYUcEyuRwTHxGDVzA=</textarea>
+<div id="decode">Decode</div>
 </form>
-<pre>
 <div id="results"></div>
-<div id="expandcontractdiv"><a id="expand" href="#">Expand all</a>&nbsp;<a id="collapse" href="#">Collapse all</a></div>
+<pre>
 <div id="resultTree"></div>
 </pre>
-<script>
-//test2()
-</script>
 </body>
 </html>
