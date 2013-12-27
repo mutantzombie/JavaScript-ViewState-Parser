@@ -25,11 +25,8 @@ pre { background: #000; color: #fff; padding: 6px; }
 hr { border: 0; width: 80%; border-bottom: 1px solid #aaa }
 .footer { text-align:center; padding-top:30px; font-style: italic; }
 </style>
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/treeview/assets/skins/sam/treeview.css" />
-<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/treeview/treeview-min.js"></script>
-<script src="https://raw.github.com/mutantzombie/JavaScript-ViewState-Parser/master/Editor.js"></script>
+<script src="http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js"></script>
+<!-- <script src="https://raw.github.com/mutantzombie/JavaScript-ViewState-Parser/master/Editor.js"></script> -->
 <script src="https://raw.github.com/mutantzombie/JavaScript-ViewState-Parser/master/Parser.js"></script>
 <script src="https://raw.github.com/mutantzombie/JavaScript-ViewState-Parser/master/viewstate.js"></script>
 </head>
@@ -43,13 +40,14 @@ hr { border: 0; width: 80%; border-bottom: 1px solid #aaa }
 </div>
 <hr>
 <p>Enter a base64-encoded, unencrypted ViewState in the textbox.</p>
-<form action="javascript:void(0)" onSubmit="deserialize(this.vs.value); return false;">
-<textarea name="vs" cols="120" rows="16"></textarea><br>
-<input type="submit">&nbsp;<input type="reset" onclick="c()">
+<form action="javascript:void(0)" onSubmit="return false;">
+<textarea id="vs" name="vs" cols="80" rows="7"></textarea>
+<div id="decode">Decode</div>
 </form>
 <div id="results"></div>
-<div id="expandcontractdiv"><a id="expand" href="#">Expand all</a>&nbsp;<a id="collapse" href="#">Collapse all</a></div>
+<pre>
 <div id="resultTree"></div>
+</pre>
 <div class="footer"></div>
 </body>
 </html>
