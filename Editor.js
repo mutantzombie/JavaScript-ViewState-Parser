@@ -1,7 +1,7 @@
 // Copyright 2011-2013, Mike Shema <mike@deadliestwebattacks.com>
 
 function Container() {
-  this.content = new Array();
+  this.content = [];
   this.serializeElements = false;
 
   this.insert = function(e) {
@@ -31,7 +31,7 @@ function Container() {
 
 function createViewState(a) {
   var n = a.length;
-  var s = new String();
+  var s = "";
 
   for(var i = 0; i < n; ++i) {
     s += parseInt(a[i], 16);  // to hex
@@ -44,7 +44,7 @@ function UInteger32(n) {
   this.m_value = n;
 
   this.serialize = function() {
-    var a = new Array();
+    var a = [];
 
     var n = this.m_value;
     var b = 0;
@@ -66,7 +66,7 @@ function UInteger32(n) {
 }
 
 function VSString(s) {
-  this.m_string = new String(s);
+  this.m_string = "" + s;
 
   this.serialize = function() {
     var n = new UInteger32(this.m_string.length);

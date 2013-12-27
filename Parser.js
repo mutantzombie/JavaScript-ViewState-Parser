@@ -1,7 +1,7 @@
 // Copyright 2011-2013, Mike Shema <mike@deadliestwebattacks.com>
 
 function capabilityChecks() {
-  return 'undefined' !== typeof(ArrayBuffer);
+  return 'undefined' != typeof(ArrayBuffer);
 }
 
 function Component(id, d, s) {
@@ -14,9 +14,7 @@ function Component(id, d, s) {
   }
 
   this.str = function() {
-    var s = new String("");
-    s += this.m_string;
-    return s;
+    return this.m_string;
   }
 }
 
@@ -26,7 +24,7 @@ function ViewState(inBase64) {
   this.m_bytes = new Uint8Array(new ArrayBuffer(this.m_raw.length));
   this.m_depth = 0;
   this.m_position = 0;
-  this.m_components = new Array();
+  this.m_components = [];
 
   for(var i = 0; i < this.m_raw.length; ++i) {
     this.m_bytes[i] = this.m_raw.charCodeAt(i);
@@ -102,7 +100,7 @@ function ViewState(inBase64) {
 
   this.parseString = function(o) {
     var n = o.parseUInteger32(o) + o.m_position;
-    var s = new String("");
+    var s = "";
 
     while(o.m_position < n) {
       s += String.fromCharCode(parseInt(o.m_bytes[o.m_position]));
@@ -136,7 +134,7 @@ function ViewState(inBase64) {
   }
 }
 
-ViewState.prototype.foo = new Object();
+ViewState.prototype.foo = {};
 ViewState.prototype.foo[0x02] = function(o) {
   ++o.m_position;
   var n = o.parseUInteger32(o);
@@ -192,7 +190,7 @@ ViewState.prototype.foo[0x15] = function(o) {
   var n = o.parseUInteger32(o);
   o.pushComponent("array", "string array (" + n + ")");
   ++o.m_depth;
-  var sa = new Array();
+  var sa = [];
   while(n > 0) {
     if(0x00 == o.m_bytes[o.m_position]) {
       ++o.m_position;
