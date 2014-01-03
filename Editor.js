@@ -1,4 +1,4 @@
-// Copyright 2011-2013, Mike Shema <mike@deadliestwebattacks.com>
+// Copyright 2011-2014, Mike Shema <mike@deadliestwebattacks.com>
 
 function Container() {
   this.content = [];
