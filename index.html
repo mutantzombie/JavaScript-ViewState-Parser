@@ -39,10 +39,10 @@ hr { border: 0; width: 80%; border-bottom: 1px solid #aaa }
 <pre>$ git clone git://github.com/mutantzombie/JavaScript-ViewState-Parser</pre></p>
 </div>
 <hr>
-<p>Enter a base64-encoded, unencrypted ViewState in the textbox.</p>
+<p>Enter an unencrypted ViewState in the textbox, e.g. <code>/wEPDwUENTM4MWRkhsjF+62gWnhYUcEyuRwTHxGDVzA=</code>.</p>
 <form action="javascript:void(0)" onSubmit="return false;">
-<textarea id="vs" name="vs" cols="80" rows="7"></textarea>
-<div id="decode">Decode</div>
+<textarea id="vs" name="vs" cols="80" rows="7" placeholder="Base64-encoded ViewState"></textarea>
+<div id="decode">[ Decode ]</div>
 </form>
 <div id="results"></div>
 <pre>
