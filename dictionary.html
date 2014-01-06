@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--
+  Copyright 2014, Mike Shema <mike@deadliestwebattacks.com>
+  Source code at https://github.com/mutantzombie/JavaScript-ViewState-Parser
+-->
+<style>
+.dictionary th.bytes {
+  white-space: nowrap;
+}
+
+.dictionary td.bytes {
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.dictionary td.footnote {
+  font-size: smaller;
+}
+</style>
+<title>.NET ViewState Byte Sequences</title>
+</head>
+<body>
+<table class="dictionary">
+<caption>.NET ViewState Byte Sequences
+<thead>
+<tr>
+<th class="bytes">Byte(s)
+<th>Explanation
+<tbody>
+<tr>
+<td class="bytes" rowspan="5">0x02 [...]
+<td>Unsigned integer, compose value from 7 bits of each following byte until leading 8th bit equals 0.
+  <tr>
+  <td>0x0201 == 00000010 00000001 == 1
+  <tr>
+  <td>0x027f == 00000010 01111111 == 127
+  <tr>
+  <td>0x028101 == 00000010 10000001 00000001 == 1 + (1 &lt;&lt; 7) == 129
+  <tr>
+  <td>0x02a1b22a == 00000010 10100001 10110010 00101010 == 33 + (98 &lt;&lt; 7) + (42 &lt;&lt; 14) == 44052769
+<tr>
+<td class="bytes">0x03 [length] [...]
+<td>Container of [length] Booleans
+<tr>
+<td class="bytes">0x05 [length] [...]
+<td>String, a container of [length] bytes
+<tr>
+<td class="bytes">0x09
+<td>RGBA component
+<tr>
+<td class="bytes">0x0B [...] 0x00
+<td>String, usually NULL-terminated, i.e. read bytes until 0x00.
+<tr>
+<td class="bytes">0x0f
+<td>Pair (tuple of two objects)
+<tr>
+<td class="bytes">0x10
+<td>Triplet (tuple of three objects)
+<tr>
+<td class="bytes">0x15 [length]
+<td>Array of strings
+<tr>
+<td class="bytes">0x16 [length]
+<td>Container of objects
+<tr>
+<td class="bytes">0x18
+<td>Control state
+<tr>
+<td class="bytes">0x1b [12 bytes]
+<td>Unit
+<tr>
+<td class="bytes">0x1e [length] [...]
+<td>String (identical to 0x05)
+<tr>
+<td class="bytes">0x1f [number]
+<td>String reference
+<tr>
+<td class="bytes">0x24 [36 bytes]
+<td>UUID
+<tr>
+<td class="bytes">0x64
+<td>empty node
+<tr>
+<td class="bytes">0x65
+<td>empty string
+<tr>
+<td class="bytes">0x66
+<td>Number 0
+<tr>
+<td class="bytes">0x67
+<td>Boolean true
+<tr>
+<td class="bytes">0x68
+<td>Boolean false
+<tr>
+<td class="bytes">0xff01
+<td>ViewState preamble
+<tfoot>
+<tr>
+<th rowspan="2">Notes
+<td class="footnote">The number of elements in a container is defined by [length], which is one or more bytes interpreted as a number in the manner of 0x02.
+  <tr>
+  <td class="footnote">A container may be empty, i.e. [length] is 0x00.
+</table>
+</body>
+</html>
