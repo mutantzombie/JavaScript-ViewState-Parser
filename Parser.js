@@ -54,31 +54,6 @@ function ViewState(inBase64) {
     if('function' === typeof(f)) {
       f(this);
     }
-    else if(0x14 == this.m_bytes[this.m_position] &&
-            0x2b == this.m_bytes[this.m_position + 1]) {
-      this.m_position += 2;
-      if(0x00 == this.m_bytes[this.m_position] &&
-         0x04 == this.m_bytes[this.m_position + 1]) {
-        this.m_position += 2;
-        while(0x02 != this.m_bytes[this.m_position]) {    // ???
-          ++this.m_position;
-        }
-        this.parseUInteger32(this);
-        this.parse();
-        this.parse();
-      }
-      else if(0x00 == this.m_bytes[this.m_position]) {
-        ++this.m_position;
-        var n = this.parseUInteger32(this);
-        while(n > 0) {
-          this.parse();
-          --n;
-        }
-      }
-      else {
-        this.parse();
-      }
-    }
     else {
       this.pushComponent("byte", "byte " + this.m_bytes[this.m_position]);
       ++this.m_position;
@@ -111,21 +86,34 @@ function ViewState(inBase64) {
   }
 
   this.parseUInteger32 = function(o) {
-    var n = parseInt(o.m_bytes[o.m_position]) & 0x7f;
-
-    if(parseInt(o.m_bytes[o.m_position]) > 0x7f) {
+    var n = 0;
+    var bits = 0;
+    while(bits < 32) {
+      var b = parseInt(o.m_bytes[o.m_position]);
       ++o.m_position;
-      n += (parseInt(o.m_bytes[o.m_position]) & 0x7f) << 7;
-
-      if(parseInt(o.m_bytes[o.m_position]) > 0x7f) {
-        ++o.m_position;
-        n += (parseInt(o.m_bytes[o.m_postion]) & 0x7f) << 14;
+      n |= (b & 0x7f) << bits;
+      if(!(b & 0x80)) {
+        return n;
       }
+      bits += 7;
     }
-
-    ++o.m_position;
-
+    // overflow
     return n;
+  }
+
+  this.parseType = function(o) {
+    var flag = this.m_bytes[this.m_position];
+    if(flag == 0x29 || flag == 0x2a) {
+      ++o.m_position;
+      return o.parseString(o);
+    }
+    else if(flag == 0x2b) {
+      ++o.m_position;
+      return o.parseUInteger32(o);
+    }
+    else {
+      return "?";
+    }
   }
 
   this.pushComponent = function(id, s) {
@@ -141,12 +129,18 @@ ViewState.prototype.foo[0x02] = function(o) {
   o.pushComponent("", n);
 }
 ViewState.prototype.foo[0x03] = function(o) {
+  // XXX should be a single byte
   o.parseContainer(o, "Booleans");
 }
 ViewState.prototype.foo[0x05] = function(o) {
   ++o.m_position;
   var s = o.parseString(o);
   o.pushComponent("string", s);
+}
+ViewState.prototype.foo[0x06] = function(o) {
+  ++o.m_position;
+  o.pushComponent("datetime", "datetime");
+  o.m_position += 8;
 }
 ViewState.prototype.foo[0x09] = function(o) {
   ++o.m_position;
@@ -185,6 +179,19 @@ ViewState.prototype.foo[0x10] = function(o) {
   o.update(o, "triplet");
   o.parse(); o.parse(); o.parse();
 }
+ViewState.prototype.foo[0x14] = function(o) {
+  ++o.m_position;
+  var type = o.parseType(o);
+  var n = o.parseUInteger32(o);
+  o.pushComponent("array", "array (" + n + ")");
+  ++o.m_depth;
+  o.pushComponent("type", "type " + type);
+  while(n > 0) {
+    o.parse();
+    --n;
+  }
+  --o.m_depth;
+}
 ViewState.prototype.foo[0x15] = function(o) {
   ++o.m_position;
   var n = o.parseUInteger32(o);
@@ -203,6 +210,7 @@ ViewState.prototype.foo[0x15] = function(o) {
   --o.m_depth;
 }
 ViewState.prototype.foo[0x16] = function(o) {
+  // XXX the official name is "arraylist"
   o.parseContainer(o, "objects");
 }
 ViewState.prototype.foo[0x18] = function(o) {
@@ -231,6 +239,22 @@ ViewState.prototype.foo[0x24] = function(o) {
   ++o.m_position;
   o.pushComponent("UUID", "UUID");
   o.m_position += 36;
+}
+ViewState.prototype.foo[0x3c] = function(o) {
+  ++o.m_position;
+  var type = o.parseType(o);
+  var length = o.parseUInteger32(o);
+  var n = o.parseUInteger32(o);
+  o.pushComponent("sparsearray", "sparsearray (" + n + ")");
+  ++o.m_depth;
+  o.pushComponent("type", "type " + type);
+  while(n > 0) {
+    var index = o.parseUInteger32(o);
+    o.pushComponent("index", "index " + index);
+    o.parse();
+    --n;
+  }
+  --o.m_depth;
 }
 ViewState.prototype.foo[0x64] = function(o) { o.update(o, "{empty}"); }
 ViewState.prototype.foo[0x65] = function(o) { o.update(o, "{empty string}"); }

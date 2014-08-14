@@ -13,7 +13,7 @@ YUI().use('event', 'node', 'tree', function (Y) {
 
     data.forEach(function(d) {
       node.append({id: d.str()});
-      item = Y.Node.create(spaces.substring(0, d.depth()) + ' ' + d.str() + '<br>');
+      item = Y.Node.create(spaces.substring(0, d.depth()) + ' ' + Y.Escape.html(d.str()) + '<br>');
       div.append(item);
     });
 //    console.log(tree);
