@@ -1,4 +1,4 @@
-// Copyright 2011-2014, Mike Shema <mike@deadliestwebattacks.com>
+// Copyright 2011-2014, Mike Shema
 
 YUI().use('event', 'node', 'tree', function (Y) {
 
